@@ -38,7 +38,7 @@ public class Main
                         3. View Special Deals
                         4. Exit
                         """);
-                System.out.print("Enter your choice");
+                System.out.print("Enter your choice: ");
                 flag = sc.nextInt() ;
             }
 

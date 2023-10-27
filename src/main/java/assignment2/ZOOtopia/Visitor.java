@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import static assignment2.ZOOtopia.Admin.viewAnimals;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 class Visitor
 {
@@ -107,7 +109,7 @@ class Visitor
         {
             this.discounts.add(new Discount("Minor Discount", 10, "MINOR10")) ;
         }
-        else if (this.age >= 60)
+        else if (this.age > 60)
         {
             this.discounts.add(new Discount("Senior Citizen Discount", 20, "SENIOR20")) ;
         }
@@ -137,7 +139,7 @@ class Visitor
             {
                 if (discount.getDiscount_code().equals(code))
                 {
-                    cost -= 20*discount.getDiscount_percentage() ;
+                    cost -= 20*discount.getDiscount_percentage()/100 ;
                     System.out.println("Discount applied successfully. Ticket now costs ₹" + cost + ".") ;
                     valid = 1 ;
                     break ;
@@ -169,7 +171,7 @@ class Visitor
             {
                 if (discount.getDiscount_code().equals(code))
                 {
-                    cost -= 50*discount.getDiscount_percentage() ;
+                    cost -= 50*discount.getDiscount_percentage()/100 ;
                     System.out.println("Discount applied successfully. Ticket now costs ₹" + cost + ".") ;
                     valid = 1 ;
                     break ;
@@ -249,19 +251,17 @@ class Visitor
                     if (choice2 > 0)
                     {
                         Integer cost = choice2*attraction.getPrice() ;
-                        Integer closest_to_choice2 = 0 ;
                         Integer special_deal = 0 ;
                         for (SpecialDeal spd : this.zoo.getSpecial_deals())
                         {
-                            if (spd.getThreshold_number() - choice2 < spd.getThreshold_number() - closest_to_choice2)
+                            if (choice2 >= spd.getThreshold_number())
                             {
-                                closest_to_choice2 = spd.getThreshold_number() ;
-                                special_deal = spd.getDiscount_percentage() ;
+                                special_deal = max(special_deal, spd.getDiscount_percentage()) ;
                             }
                         }
                         if (special_deal != 0)
                         {
-                            cost -= (choice2*attraction.getPrice()*special_deal/100) ;
+                            cost -= min((choice2*attraction.getPrice()*special_deal/100), cost) ;
                             System.out.println("Congratulations! Special Deal Applied! Ticket cost reduced from ₹" + choice2* attraction.getPrice()+ " to ₹" + cost + ".") ;
                         }
                         System.out.println("Total cost of " + choice2 + " tickets is ₹" + cost + ".") ;
@@ -272,7 +272,7 @@ class Visitor
                         {
                             if (discount.getDiscount_code().equals(code))
                             {
-                                cost -= (choice2*attraction.getPrice()*discount.getDiscount_percentage()/100) ;
+                                cost -= min(cost, (choice2*attraction.getPrice()*discount.getDiscount_percentage()/100)) ;
                                 System.out.println("Discount applied successfully. Ticket now costs ₹" + cost + ".") ;
                                 valid = 1 ;
                                 break ;
