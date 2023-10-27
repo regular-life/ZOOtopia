@@ -17,6 +17,7 @@ ZOOtopia is a virtual zoo management application that simulates the operation of
    - [Visitor](#visitor)
    - [Zoo](#zoo)
    - [Main](#main)
+6. [Contributors](#contributors)
 
 ## Introduction
 
@@ -130,8 +131,9 @@ The interaction between the `Admin`, `Visitor`, and `Zoo` classes, facilitated b
 
 This code structure empowers the efficient management and operation of the virtual zoo, offering a rich and engaging experience to both administrators and visitors.
 
-For detailed information on each class and its functionalities, refer to the class descriptions within the source code.
+## Contributors
+- [Yash Bhardwaj](https://linktr.ee/yash_04) - [GitHub Profile](https://github.com/regular-life)
 
-If you have any questions or need further assistance, feel free to reach out to me at [yash22586@iiitd.ac.in](mailto:yash22586@iiitd.ac.in).
+Feel free to reach out to me for any questions or issues related to the project.
 
-Happy zoo management in ZOOtopia!
+If you encounter any issues or have suggestions for improvement, please let me know at yash22586@iiitd.ac.in.
